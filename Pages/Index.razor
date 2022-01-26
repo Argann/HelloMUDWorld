@@ -1,9 +1,20 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Hello MUD World</PageTitle>
 
-<h1>Hello, world!</h1>
+<AuthorizeView>
+    <Authorized>
+        <Chat></Chat>
+    </Authorized>
+    <NotAuthorized>
+        <div class="container-fluid text-center main-display">
 
-Welcome to your new app.
+            <h1>Hello, MUD world!</h1>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+            HMW is a learning project built with Blazor.
+
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+

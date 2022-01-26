@@ -3,18 +3,17 @@
 <PageTitle>HelloMUDWorld</PageTitle>
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
     <main>
-        <div class="top-row px-4 auth">
-            <LoginDisplay />
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
+        <nav class="navbar sticky-top navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Hello MUD World</a>
+                <div class="d-flex">
+                    <LoginDisplay />
+                </div>
+            </div>
+        </nav>
+        <div class="content py-0">
             @Body
-        </article>
+        </div>
     </main>
 </div>
