@@ -5,6 +5,12 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>C:\Projets\Perso\HelloMUDWorld\Properties\PublishProfiles\hellomudworld - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Projets\Perso\HelloMUDWorld\.github\workflows\main_hellomudworld.yml</NameOfLastUsedPublishProfile>
+    <_SelectedScaffolderID>IdentityScaffolder</_SelectedScaffolderID>
+    <_SelectedScaffolderCategoryPath>root/Identity</_SelectedScaffolderCategoryPath>
+    <WebStackScaffolding_ViewDialogWidth>800</WebStackScaffolding_ViewDialogWidth>
+    <WebStackScaffolding_LayoutPageFile>~/Pages/_Layout.cshtml</WebStackScaffolding_LayoutPageFile>
+    <WebStackScaffolding_DbContextDialogWidth>650</WebStackScaffolding_DbContextDialogWidth>
+    <WebStackScaffolding_IdentityDialogWidth>650</WebStackScaffolding_IdentityDialogWidth>
   </PropertyGroup>
 </Project>

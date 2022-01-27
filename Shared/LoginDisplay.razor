@@ -1,12 +1,41 @@
-﻿<AuthorizeView>
+﻿@using HelloMUDWorld.Data.Identity
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Identity
+@inject NavigationManager Navigation
+@inject TokenProvider TokenProvider
+
+@inject UserManager<HelloMUDWorldUser> UserManager
+
+<AuthorizeView>
     <Authorized>
-        <a class="btn btn-outline-light mx-1" href="Identity/Account/Manage">Hello, @context.User.Identity?.Name!</a>
-        <form method="post" action="Identity/Account/LogOut">
-            <button type="submit" class="nav-link btn btn-link btn-outline-light mx-1">Log out</button>
+        <a href="Identity/Account/Manage/Index" class="btn btn-outline-light mx-1">
+            Hello, @Username
+        </a>
+        <form action="/Identity/Account/Logout?returnUrl=%2F" method="post">
+            <button class="nav-link btn btn-link btn-outline-light mx-1" type="submit">Logout</button>
+            <input name="__RequestVerificationToken" type="hidden" 
+                value="@TokenProvider.XsrfToken">
         </form>
     </Authorized>
     <NotAuthorized>
         <a class="btn btn-outline-light mx-1" href="Identity/Account/Register">Register</a>
-        <a class="btn btn-outline-light mx-1" href="Identity/Account/Login">Log in</a>
+        <a class="btn btn-outline-light mx-1" href="Identity/Account/Login">Login</a>
     </NotAuthorized>
 </AuthorizeView>
+
+@code
+{
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationStateTask { get; set; }
+
+    private string? Username { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        var authState = await authenticationStateTask;
+
+        var user = await UserManager.GetUserAsync(authState.User);
+
+        Username = user is null ? "null" : user.DisplayName;
+    }
+}

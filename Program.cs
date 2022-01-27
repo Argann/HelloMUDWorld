@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HelloMUDWorld.Areas.Identity;
 using HelloMUDWorld.Data;
 using HelloMUDWorld.Server.Hubs;
+using HelloMUDWorld.Data.Identity;
 
 // =========================
 //          BUILDER
@@ -22,8 +23,8 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services
-    .AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connectionString));
+builder.Services.AddDbContext<HelloMUDWorldContext>(options =>
+    options.UseSqlite(connectionString));
 
 builder.Services
     .AddDatabaseDeveloperPageExceptionFilter();
@@ -31,10 +32,12 @@ builder.Services
 // # Identity
 
 builder.Services
-    .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddDefaultIdentity<HelloMUDWorldUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<HelloMUDWorldContext>();
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<TokenProvider>();
 
 // # Razor & Blazor
 

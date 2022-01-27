@@ -1,8 +1,20 @@
 ﻿@page "/"
 @namespace HelloMUDWorld.Pages
+@using HelloMUDWorld.Data.Identity
+@using Microsoft.AspNetCore.Authentication
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
 @{
     Layout = "_Layout";
+
+    var tokens = new InitialApplicationState
+        {
+            AccessToken = await HttpContext.GetTokenAsync("access_token"),
+            RefreshToken = await HttpContext.GetTokenAsync("refresh_token"),
+            XsrfToken = Xsrf.GetAndStoreTokens(HttpContext).RequestToken
+        };
 }
 
-<component type="typeof(App)" render-mode="ServerPrerendered" />
+<component type="typeof(App)" param-InitialState="tokens" render-mode="ServerPrerendered" />
