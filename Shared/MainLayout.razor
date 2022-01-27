@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Hosting
+@inject IWebHostEnvironment hostEnv
 
 <PageTitle>HelloMUDWorld</PageTitle>
 
@@ -6,7 +8,12 @@
     <main>
         <nav class="navbar sticky-top navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">Hello MUD World</a>
+                <a class="navbar-brand" href="/">
+                    Hello MUD World @if (hostEnv.IsDevelopment())
+                    {
+                        <span class="text-muted">- Development</span>
+                    }
+                </a>
                 <div class="d-flex">
                     <LoginDisplay />
                 </div>
